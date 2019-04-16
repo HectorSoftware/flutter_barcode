@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode/main.dart';
 
 
 class Capture extends StatefulWidget {
@@ -14,32 +15,85 @@ class Capture extends StatefulWidget {
 
 class CaptureState extends State<Capture> {
   String result = "Presione para Escanear...";
+  bool entro = false;
 
   Future _scanQR() async {
     try {
       String qrResult = await BarcodeScanner.scan();
       setState(() {
         result = qrResult;
+        entro = true;
       });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
           result = "Permiso de la cámara fue denegado";
+          entro = false;
         });
       } else {
         setState(() {
           result = "Error desconocido : $ex";
+          entro = false;
         });
       }
     } on FormatException {
       setState(() {
         result = "Presione para Escanear...";
+        entro = false;
       });
     } catch (ex) {
       setState(() {
-        result = "Unknown Error $ex";
+        result = "Error desconocido : $ex";
+        entro = false;
       });
     }
+  }
+
+  Future VentanaGuardar() async {
+
+    final _formKey = GlobalKey<FormState>();
+
+    await showDialog(
+        context: context,
+        // ignore: deprecated_member_use
+        child: SimpleDialog(
+            children: <Widget>[
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        decoration: new InputDecoration(
+                            labelText: 'Descripción',
+                            fillColor: Colors.teal[700],
+                            border: new OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(20.0),
+                              borderSide: new BorderSide(),
+                            )
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Por favor inserte un texto';
+                          }
+                        },
+                      ),
+                      RaisedButton(
+                        color: PrimaryColor,
+                        textColor: Colors.white,
+                        child: Text("Guardar"),
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            Navigator.pop(context);
+                            //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+              ),
+            ]
+        )
+    );
   }
 
   @override
@@ -51,12 +105,35 @@ class CaptureState extends State<Capture> {
           style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.camera_alt),
-        label: Text("Escanear"),
-        onPressed: _scanQR,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton:Container(
+        width: MediaQuery.of(context).size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: FloatingActionButton.extended(
+                  icon: Icon(Icons.camera_alt),
+                  label: Text("Escanear"),
+                  onPressed: _scanQR,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 0),
+                child: FloatingActionButton.extended(
+                  icon: Icon(Icons.save),
+                  label: Text("Guardar"),
+                  onPressed: (){
+                    if(!entro){ VentanaGuardar(); }
+                  },
+                ),
+              ),
+            ],
+          )
+      )
+
+
     );
   }
 }
