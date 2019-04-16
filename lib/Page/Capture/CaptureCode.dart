@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode/Page/Sqlite/database_helper.dart';
 import 'package:flutter_barcode/main.dart';
 
 
@@ -96,6 +97,8 @@ class CaptureState extends State<Capture> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,7 +126,7 @@ class CaptureState extends State<Capture> {
                 padding: const EdgeInsets.only(left: 0),
                 child: FloatingActionButton.extended(
                   icon: Icon(Icons.save),
-                  label: Text("Guardar"),
+                  label: Text("Procesar"),
                   onPressed: (){
                     if(!entro){ VentanaGuardar(); }
                   },
