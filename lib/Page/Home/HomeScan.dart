@@ -39,6 +39,7 @@ class HomePagescanState extends State<HomePagescan>  with SingleTickerProviderSt
   TabBar getTabBar(){
     return TabBar(
       tabs: <Tab>[
+        Tab(icon: Icon(Icons.archive)),
         Tab(icon: Icon(Icons.airline_seat_legroom_reduced)),
         Tab(icon: Icon(Icons.linked_camera)),
       ],
