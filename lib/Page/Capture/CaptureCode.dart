@@ -33,7 +33,7 @@ class CaptureState extends State<Capture> {
       }
     } on FormatException {
       setState(() {
-        result = "Presionaste el botón Atrás antes de escanear algo";
+        result = "Presione para Escanear...";
       });
     } catch (ex) {
       setState(() {
@@ -45,9 +45,6 @@ class CaptureState extends State<Capture> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Escanear Codigo"),
-      ),
       body: Center(
         child: Text(
           result,
