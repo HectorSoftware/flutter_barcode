@@ -81,8 +81,8 @@ class CaptureState extends State<Capture> {
                         color: PrimaryColor,
                         textColor: Colors.white,
                         child: Text("Guardar"),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
+                        onPressed: (){
+                          if (_formKey.currentState.validate()){
                             Navigator.pop(context);
                             //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
                           }
