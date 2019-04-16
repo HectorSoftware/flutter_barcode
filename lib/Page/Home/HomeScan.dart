@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode/Page/Capture/CaptureCode.dart';
+import 'package:flutter_barcode/Page/Cards/Cards.dart';
 
 
 class HomePagescan extends StatefulWidget {
@@ -40,7 +41,6 @@ class HomePagescanState extends State<HomePagescan>  with SingleTickerProviderSt
     return TabBar(
       tabs: <Tab>[
         Tab(icon: Icon(Icons.archive)),
-        Tab(icon: Icon(Icons.airline_seat_legroom_reduced)),
         Tab(icon: Icon(Icons.linked_camera)),
       ],
       controller: _controller,
@@ -49,7 +49,7 @@ class HomePagescanState extends State<HomePagescan>  with SingleTickerProviderSt
   TabBarView getTabBarView(){
     return TabBarView(
       children: <Widget>[
-        Text('nojd'),
+        CardAdd(),
         Capture(),
       ],
       controller: _controller,
