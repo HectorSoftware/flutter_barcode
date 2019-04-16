@@ -13,7 +13,7 @@ class Capture extends StatefulWidget {
 }
 
 class CaptureState extends State<Capture> {
-  String result = "Hey there !";
+  String result = "Presione para Escanear...";
 
   Future _scanQR() async {
     try {
@@ -24,16 +24,16 @@ class CaptureState extends State<Capture> {
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
-          result = "Camera permission was denied";
+          result = "Permiso de la cámara fue denegado";
         });
       } else {
         setState(() {
-          result = "Unknown Error $ex";
+          result = "Error desconocido : $ex";
         });
       }
     } on FormatException {
       setState(() {
-        result = "You pressed the back button before scanning anything";
+        result = "Presionaste el botón Atrás antes de escanear algo";
       });
     } catch (ex) {
       setState(() {
@@ -46,7 +46,7 @@ class CaptureState extends State<Capture> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("QR Scanner"),
+        title: Text("Escanear Codigo"),
       ),
       body: Center(
         child: Text(
@@ -56,7 +56,7 @@ class CaptureState extends State<Capture> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.camera_alt),
-        label: Text("Scan"),
+        label: Text("Escanear"),
         onPressed: _scanQR,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
