@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode/Page/Sqlite/BarCodeClass.dart';
 import 'package:flutter_barcode/Page/Sqlite/database_helper.dart';
 import 'package:flutter_barcode/main.dart';
 
@@ -16,6 +17,7 @@ class Capture extends StatefulWidget {
 
 class CaptureState extends State<Capture> {
   String result = "Presione para Escanear...";
+  String result2 = "";
   bool entro = false;
 
   Future _scanQR() async {
@@ -51,9 +53,7 @@ class CaptureState extends State<Capture> {
   }
 
   Future VentanaGuardar() async {
-
     final _formKey = GlobalKey<FormState>();
-
     await showDialog(
         context: context,
         // ignore: deprecated_member_use
@@ -73,8 +73,13 @@ class CaptureState extends State<Capture> {
                             )
                         ),
                         validator: (value) {
+                          result2 = "";
                           if (value.isEmpty) {
                             return 'Por favor inserte un texto';
+                          }else{
+                            setState(() {
+                              result2 = value;
+                            });
                           }
                         },
                       ),
@@ -85,6 +90,8 @@ class CaptureState extends State<Capture> {
                         onPressed: (){
                           if (_formKey.currentState.validate()){
                             Navigator.pop(context);
+                            BarCode agregar = new BarCode(barcode: result,Descripcion: result2);
+                            ClientDatabaseProvider.db.addCodeToDatabase(agregar);
                             //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
                           }
                         },
@@ -96,8 +103,6 @@ class CaptureState extends State<Capture> {
         )
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +140,6 @@ class CaptureState extends State<Capture> {
             ],
           )
       )
-
-
     );
   }
 }

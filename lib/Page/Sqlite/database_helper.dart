@@ -26,8 +26,7 @@ class ClientDatabaseProvider{
         onCreate: (Database db, int version) async {
           await db.execute("CREATE TABLE CODIGOS ("
               "Barcode TEXT primary key,"
-              "Descripcion TEXT,"
-              ")");
+              "Descripcion TEXT"")");
         });
   }
   //Query
