@@ -51,14 +51,18 @@ class _CardAddState extends State<CardAdd> {
                     //If we press one of the cards, it takes us to the page to edit, with the data onTap:
                     //This method is in the file add_editclient.dart
                     onTap: () {
-
+                      //ADD EVENTO AL PRESSIONAR CODIGO
                     },
                   ),
                 );
               },
             );
           }else {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+              child: Text('No hay codigos registrados',
+              ),
+
+              /*child: CircularProgressIndicator()*/);
           }
         },
       ),
