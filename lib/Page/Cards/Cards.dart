@@ -6,6 +6,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode/Page/Sqlite/BarCodeClass.dart';
 import 'package:flutter_barcode/Page/Sqlite/database_helper.dart';
+import 'package:flutter_barcode/main.dart';
 
 class CardAdd extends StatefulWidget {
   @override
@@ -52,7 +53,7 @@ class _CardAddState extends State<CardAdd> {
                 //delete one register for id
                 return Dismissible(
                   key: UniqueKey(),
-                  background: Container(color: Colors.grey),
+                  background: Container(color: PrimaryColor),
                   onDismissed: (diretion) {
                     ClientDatabaseProvider.db.deleteCodeWithId(item.barcode);
                   },
