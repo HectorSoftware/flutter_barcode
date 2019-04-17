@@ -43,7 +43,7 @@ class ClientDatabaseProvider{
   //muestra un solo cliente por el id la base de datos
   Future<BarCode> getCodeId(String codigo) async {
     final db = await database;
-    var response = await db.query("CODIGOS", where: "Barcode = ?", whereArgs: [codigo]);
+    var response = await db.query("CODIGOS", where: "BarCode = ?", whereArgs: [codigo]);
     return response.isNotEmpty ? BarCode.fromMap(response.first) : null;
   }
 
@@ -64,14 +64,14 @@ class ClientDatabaseProvider{
   //Delete client with id
   deleteCodeWithId(String barcode) async {
     final db = await database;
-    return db.delete("CODIGOS", where: "Barcode = ?", whereArgs: [barcode]);
+    return db.delete("CODIGOS", where: "BarCode = ?", whereArgs: [barcode]);
   }
 
   //Update
   updateCode(BarCode bar) async {
     final db = await database;
     var response = await db.update("CODIGOS", bar.toMap(),
-        where: "Barcode = ?", whereArgs: [bar.barcode]);
+        where: "BarCode = ?", whereArgs: [bar.barcode]);
     return response;
   }
 

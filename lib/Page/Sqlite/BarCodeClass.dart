@@ -9,14 +9,14 @@ class BarCode{
   //Para insertar los datos en la bd, necesitamos convertirlo en un Map
   Map<String, dynamic> toMap() => {
     "id" : id,
-    "Barcode": barcode,
+    "BarCode": barcode,
     "Descripcion": Descripcion,
   };
   //to receive the data we need to pass it from Map to json
   //para recibir los datos necesitamos pasarlo de Map a json
   factory BarCode.fromMap(Map<String, dynamic> json) => new BarCode(
     id: json["id"],
-    barcode: json["Barcode"],
+    barcode: json["BarCode"],
     Descripcion: json["Descripcion"],
   );
 }
