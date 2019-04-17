@@ -58,43 +58,55 @@ class CaptureState extends State<Capture> {
         context: context,
         // ignore: deprecated_member_use
         child: SimpleDialog(
+          title: Text(''),
             children: <Widget>[
               Form(
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      TextFormField(
-                        decoration: new InputDecoration(
-                            labelText: 'Descripción',
-                            fillColor: Colors.teal[700],
-                            border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(20.0),
-                              borderSide: new BorderSide(),
-                            )
+                      Padding(
+                        padding: const EdgeInsets.all(25.0),
+                        child: TextFormField(
+                          decoration: new InputDecoration(
+                              labelText: 'Descripción',
+                              fillColor: Colors.teal[700],
+                              border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(20.0),
+                                borderSide: new BorderSide(),
+                              )
+                          ),
+                          validator: (value) {
+                            result2 = "";
+                            if (value.isEmpty) {
+                              return 'Por favor inserte un texto';
+                            }else{
+                              setState(() {
+                                result2 = value;
+                              });
+                            }
+                          },
                         ),
-                        validator: (value) {
-                          result2 = "";
-                          if (value.isEmpty) {
-                            return 'Por favor inserte un texto';
-                          }else{
-                            setState(() {
-                              result2 = value;
-                            });
-                          }
-                        },
                       ),
-                      RaisedButton(
-                        color: PrimaryColor,
-                        textColor: Colors.white,
-                        child: Text("Guardar"),
-                        onPressed: (){
-                          if (_formKey.currentState.validate()){
-                            Navigator.pop(context);
-                            BarCode agregar = new BarCode(barcode: result,Descripcion: result2);
-                            ClientDatabaseProvider.db.addCodeToDatabase(agregar);
-                            //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
-                          }
-                        },
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          color: PrimaryColor,
+                          textColor: Colors.white,
+                          child: Text("Guardar"),
+                          onPressed: (){
+                            if (_formKey.currentState.validate()){
+                              Navigator.pop(context);
+                              BarCode agregar = new BarCode(barcode: result,Descripcion: result2);
+                              ClientDatabaseProvider.db.addCodeToDatabase(agregar);
+                              //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
+                              setState(() {
+                                result = "Presione para Escanear...";
+                                entro = false;
+                              });
+
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -116,7 +128,7 @@ class CaptureState extends State<Capture> {
       floatingActionButton:Container(
         width: MediaQuery.of(context).size.width,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Padding(
