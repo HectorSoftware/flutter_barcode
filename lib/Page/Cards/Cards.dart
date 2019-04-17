@@ -33,6 +33,8 @@ class _CardAddState extends State<CardAdd> {
 
   obtener() async{
     List<BarCode> lista = await ClientDatabaseProvider.db.getAllCodes();
+    print(lista.length);
+    print('**********');
   }
 
   @override
