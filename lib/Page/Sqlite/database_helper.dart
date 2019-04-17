@@ -25,7 +25,8 @@ class ClientDatabaseProvider{
     return await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
           await db.execute("CREATE TABLE CODIGOS ("
-              "Barcode TEXT primary key,"
+              "id integer primary key,"
+              "BarCode TEXT,"
               "Descripcion TEXT"")");
         });
   }
@@ -50,8 +51,8 @@ class ClientDatabaseProvider{
   addCodeToDatabase(BarCode bar) async {
     final db = await database;
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM CODIGOS");
-    String id = table.first["Barcode"];
-    bar.barcode = id;
+    int id = table.first["id"];
+    bar.id = id;
     var raw = await db.insert(
       "CODIGOS",
       bar.toMap(),
