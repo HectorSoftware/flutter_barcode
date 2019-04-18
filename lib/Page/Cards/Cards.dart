@@ -68,7 +68,7 @@ class _CardAddState extends State<CardAdd> {
                   },
                   //Now we paint the list with all the records, which will have a number, name, phone
                   child: ListTile(
-                    title: Text(item.Descripcion + item.barcode),
+                    title: Text(item.Descripcion),
                     subtitle: Text(item.barcode),
                     leading: CircleAvatar(child: Icon(Icons.check_circle)),
                     //If we press one of the cards, it takes us to the page to edit, with the data onTap:
@@ -76,6 +76,7 @@ class _CardAddState extends State<CardAdd> {
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => InvoiceDetails(codigo: item.barcode,Description: item.Descripcion),
+                        //builder: (BuildContext context) => InvoiceDetails(codigo: '001020400192',Description: item.Descripcion),
                       ),
                       );
                       //ADD EVENTO AL PRESSIONAR CODIGO

@@ -26,7 +26,10 @@ class HomePagescanState extends State<HomePagescan>  with SingleTickerProviderSt
     return Scaffold(
         appBar: AppBar(
           bottom: getTabBar(),
-          title: Text("Scanner"),
+          title: Text("ScanCode"),
+          elevation: 12,
+          actions: <Widget>[
+          ],
         ),
         body: getTabBarView(),
     );
