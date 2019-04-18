@@ -1,4 +1,5 @@
 import 'package:flutter_barcode/Page/Sqlite/BarCodeClass.dart';
+import 'package:flutter_barcode/Page/Sqlite/InvoicesClass.dart';
 import 'package:flutter_barcode/api/protos/invoice.pb.dart';
 import 'package:flutter_barcode/api/protos/invoice.pbenum.dart';
 import 'package:flutter_barcode/api/protos/invoice.pbgrpc.dart';
@@ -22,8 +23,8 @@ class Services{
   }
    Future<Null> CloseTest() async{ await channel.shutdown();  }
 
-  Future<List<BarCode>> GetInvoiceAndSave(String codigo, String Descripcion) async{
-    List<BarCode> codigos = new List<BarCode>();
+  Future<List<InvoicesCode>> GetInvoiceAndSave(String codigo) async{
+    List<InvoicesCode> codigos = new List<InvoicesCode>();
     var request = new ListInvoicesRequest();
     try{
       var response = await InvoicesStub.listInvoices(request);
@@ -33,12 +34,32 @@ class Services{
         print(value);
 
         List<String> list_dateFrom = new List<String>();
-        for(var v in value.dateFrom){
-          print(v);
-        }
+        list_dateFrom.add(value.dateFrom.year);
+        list_dateFrom.add(value.dateFrom.month);
+        list_dateFrom.add(value.dateFrom.day);
 
-        //BarCode varlocal = BarCode(id: index,barcode: codigo,Descripcion: Descripcion,total: value.total,status: value.status,dateFrom: ,DateTo: ,Month: ,ExpirationDate: ,Year: ;
+        List<String> list_dateTo = new List<String>();
+        list_dateTo.add(value.dateFrom.year);
+        list_dateTo.add(value.dateFrom.month);
+        list_dateTo.add(value.dateFrom.day);
+
+        List<String> list_expirationDate = new List<String>();
+        list_expirationDate.add(value.dateFrom.year);
+        list_expirationDate.add(value.dateFrom.month);
+        list_expirationDate.add(value.dateFrom.day);
+
+        InvoicesCode varlocal = InvoicesCode(
+            total: value.total,
+            status: value.status,
+            dateFrom: list_dateFrom,
+            DateTo: list_dateTo,
+            Month: value.month,
+            ExpirationDate: list_expirationDate,
+            Year: value.year
+        );
+
         index++;
+        codigos.add(varlocal);
       }
 
     }catch(e){

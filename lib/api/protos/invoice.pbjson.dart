@@ -47,6 +47,9 @@ const Invoice$json = const {
 
 const ListInvoicesRequest$json = const {
   '1': 'ListInvoicesRequest',
+  '2': const [
+    const {'1': 'service_number', '3': 1, '4': 1, '5': 9, '10': 'serviceNumber'},
+  ],
 };
 
 const ListInvoicesResponse$json = const {
