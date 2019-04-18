@@ -58,7 +58,8 @@ class CaptureState extends State<Capture> {
         context: context,
         // ignore: deprecated_member_use
         child: SimpleDialog(
-          title: Text(''),
+          title: Text('Agregar. . .'),
+          backgroundColor: Color(Colors.white.value),
             children: <Widget>[
               Form(
                   key: _formKey,
@@ -88,24 +89,27 @@ class CaptureState extends State<Capture> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          color: PrimaryColor,
-                          textColor: Colors.white,
-                          child: Text("Guardar"),
-                          onPressed: (){
-                            if (_formKey.currentState.validate()){
-                              Navigator.pop(context);
-                              BarCode agregar = new BarCode(barcode: result,Descripcion: result2);
-                              ClientDatabaseProvider.db.addCodeToDatabase(agregar);
-                              //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
-                              setState(() {
-                                result = "Presione para Escanear...";
-                                entro = false;
-                              });
-                            }
-                          },
-                        ),
+                        padding: const EdgeInsets.all(0.0),
+                        child: ButtonTheme(
+                          //minWidth: 200,
+                          child: RaisedButton(
+                            color: PrimaryColor,
+                            textColor: Colors.white,
+                            child: Text("Guardar"),
+                            onPressed: (){
+                              if (_formKey.currentState.validate()){
+                                Navigator.pop(context);
+                                BarCode agregar = new BarCode(barcode: result,Descripcion: result2);
+                                ClientDatabaseProvider.db.addCodeToDatabase(agregar);
+                                //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
+                                setState(() {
+                                  result = "Presione para Escanear...";
+                                  entro = false;
+                                });
+                              }
+                            },
+                          ),
+                        )
                       ),
                     ],
                   ),
@@ -145,7 +149,7 @@ class CaptureState extends State<Capture> {
                   icon: Icon(Icons.save),
                   label: Text("Procesar"),
                   onPressed: (){
-                    if(!entro){ VentanaGuardar(); }
+                    if(entro){ VentanaGuardar(); }
                   },
                 ),
               ),

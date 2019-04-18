@@ -36,6 +36,8 @@ class Services{
       for(var value in response.invoices){
       //  print(value);
 
+        print(value);
+
         List<String> list_dateFrom = new List<String>();
         list_dateFrom.add(value.dateFrom.year.toString());
         list_dateFrom.add(value.dateFrom.month.toString());
