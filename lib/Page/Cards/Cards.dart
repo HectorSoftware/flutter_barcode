@@ -76,6 +76,7 @@ class _CardAddState extends State<CardAdd> {
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => InvoiceDetails(codigo: item.barcode,Description: item.Descripcion),
+                        //builder: (BuildContext context) => InvoiceDetails(codigo: '001020400192',Description: item.Descripcion),
                       ),
                       );
                       //ADD EVENTO AL PRESSIONAR CODIGO

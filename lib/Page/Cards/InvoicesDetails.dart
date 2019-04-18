@@ -35,6 +35,8 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
   }
 
   void initvalues() async {
+
+    print(widget.codigo);
     Servicios.ConnectionTest('192.168.1.14',3000);
     listInvoice = await Servicios.GetInvoiceAndSave(widget.codigo);
     print(listInvoice.length);
@@ -51,36 +53,20 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
   @override
   Widget build(BuildContext context) {
 
-    /*return new Scaffold(
+    return new Scaffold(
       appBar: AppBar(
         title: Text('Detalles'),
       ),
       body: ListView.builder(
         itemCount: listInvoice.length,
         itemBuilder:(BuildContext context, int index){
-          return ListTile(
-            title: Text(listInvoice[index].Month),
-            subtitle: Text(listInvoice[index].total.toString()),
-          );
-        } ,
-      ),
-    );*/
-
-    return new Scaffold(
-      appBar: AppBar(
-        title: Text('Detalles'),
-      ),
-      body: ListView.builder(
-        itemCount: 12,
-        itemBuilder:(BuildContext context, int index){
           return Column(
             children: <Widget>[
           ListTile(
-          title: Text('Estado:  ' + '1\n' + 'Mes: ' + '  2\n' + 'Año: ' + 'Añoo'),
-          subtitle: Text('Desde:  ' + 'fecha  ' + 'Hasta:' + '  fecha2  ' + 'Total : ' + 'precio'),
-          leading: CircleAvatar(child: Icon(Icons.list)),
 
-
+          title: Text('Estado:  ' + listInvoice[index].status+ '\nMes: ' +  listInvoice[index].Month + '\nAño: ' + listInvoice[index].Year),
+          subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[0] + ' Hasta: ' + listInvoice[index].ExpirationDate[0] + ' Total : ' + listInvoice[index].total.toString()),
+          leading: CircleAvatar(child: Icon(Icons.details)),
           ),
             Divider(
               height: 25,
@@ -92,65 +78,3 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
     );
   }
 }
-
-
-
-/* child: Column(
-              children: <Widget>[
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                              Container(
-                                 child: Column(
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: <Widget>[
-                                     IconButton(onPressed: () {},icon: Icon(Icons.arrow_forward),),
-                                     Text('Estado:',style: TextStyle(color: Colors.white,fontSize: 20,),),
-                                     Text('Total:',style: TextStyle(color:Colors.white,fontSize: 20 ),),
-                                     Text('Desde:',style: TextStyle(color:Colors.white,fontSize: 20 ),),
-                                     Text('Hasta:',style: TextStyle(color:Colors.white,fontSize: 20 ),),
-                                     Text('Mes:',style: TextStyle(color:Colors.white,fontSize: 20 ),),
-                                     Text('Año:',style: TextStyle(color:Colors.white,fontSize: 20 ),),
-                                     Text('Total:',style: TextStyle(color:Colors.white,fontSize: 20 ),),
-                                     Divider(
-                                       height: 10,
-                                     )
-                                   ],
-                                 ),
-                                decoration: BoxDecoration(
-                                  color: PrimaryColor,
-
-                               ),
-                              ),
-
-                          ],
-                        ),
-
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                          /*  Text(listInvoice[index].status),
-                            Text(listInvoice[index].total.toString()),
-                            Text(listInvoice[index].dateFrom.toString()),
-                            Text(listInvoice[index].Month),
-                            Text(listInvoice[index].ExpirationDate.toString()),
-                            Text(listInvoice[index].Year),
-                            Text(listInvoice[index].total.toString()),*/
-                          ],
-                        ),
-
-                      ),
-
-                    ],
-                  ),
-                ),
-
-
-              ],
-            ),*/
