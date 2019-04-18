@@ -22,19 +22,28 @@ class Services{
   }
    Future<Null> CloseTest() async{ await channel.shutdown();  }
 
-   Future<List<BarCode>> TraerInvoice(String codigo) async{
-    print('=======================');
+  Future<List<BarCode>> GetInvoiceAndSave(String codigo, String Descripcion) async{
     List<BarCode> codigos = new List<BarCode>();
+    var request = new ListInvoicesRequest();
+    try{
+      var response = await InvoicesStub.listInvoices(request);
 
-     var request = new ListInvoicesRequest();
+      int index = 0;
+      for(var value in response.invoices){
+        print(value);
 
-      try{
-        var response = await InvoicesStub.listInvoices(request);
-        print('=======================');
-        print(response);
-      }catch(e){
-        print(e.toString());
+        List<String> list_dateFrom = new List<String>();
+        for(var v in value.dateFrom){
+          print(v);
+        }
+
+        //BarCode varlocal = BarCode(id: index,barcode: codigo,Descripcion: Descripcion,total: value.total,status: value.status,dateFrom: ,DateTo: ,Month: ,ExpirationDate: ,Year: ;
+        index++;
       }
-   }
+
+    }catch(e){
+      print(e.toString());
+    }
+  }
 
 }
