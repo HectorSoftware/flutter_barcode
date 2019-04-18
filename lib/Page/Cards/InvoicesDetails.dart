@@ -20,19 +20,23 @@ class InvoiceDetails extends StatefulWidget {
   @override
   _InvoiceDetailsState createState() => new _InvoiceDetailsState();
 }
+
 class _InvoiceDetailsState extends State<InvoiceDetails> {
 
     Services Servicios = Services();
     List<InvoicesCode> listInvoice = List<InvoicesCode>();
 
-  void initvalues() async {
-    listInvoice = await Servicios.GetInvoiceAndSave(widget.codigo);
-    print(listInvoice.length);
-  }
+
   @override
   void initState() {
     initvalues();
     super.initState();
+  }
+
+  void initvalues() async {
+    Servicios.ConnectionTest('192.168.1.14',3000);
+    Servicios.GetInvoiceAndSave(widget.codigo);
+    print(listInvoice.length);
   }
 
   @override

@@ -36,9 +36,9 @@ class _CardAddState extends State<CardAdd> {
   }
 
   void PeticionGrpc() async{
-    Servicios.ConnectionTest('192.168.1.14',3000);
-    obtener();
-    Servicios.GetInvoiceAndSave('');
+    //Servicios.ConnectionTest('192.168.1.14',3000);
+    //obtener();
+    //Servicios.GetInvoiceAndSave('');
     //Servicios.CloseTest();
   }
   obtener() async{
@@ -77,7 +77,10 @@ class _CardAddState extends State<CardAdd> {
                     //If we press one of the cards, it takes us to the page to edit, with the data onTap:
                     //This method is in the file add_editclient.dart
                     onTap: () {
-                      InvoiceDetails(codigo: item.barcode,Description: item.Descripcion, );
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => InvoiceDetails(codigo: item.barcode,Description: item.Descripcion),
+                      ),
+                      );
                       //ADD EVENTO AL PRESSIONAR CODIGO
                     },
                   ),

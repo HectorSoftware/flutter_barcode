@@ -97,9 +97,6 @@ class CaptureState extends State<Capture> {
                             if (_formKey.currentState.validate()){
                               Navigator.pop(context);
                               BarCode agregar = new BarCode(barcode: result,Descripcion: result2);
-
-                              //recibir los barCode
-
                               ClientDatabaseProvider.db.addCodeToDatabase(agregar);
                               //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
                               setState(() {
@@ -148,7 +145,7 @@ class CaptureState extends State<Capture> {
                   icon: Icon(Icons.save),
                   label: Text("Procesar"),
                   onPressed: (){
-                    if(entro){ VentanaGuardar(); }
+                    if(!entro){ VentanaGuardar(); }
                   },
                 ),
               ),
