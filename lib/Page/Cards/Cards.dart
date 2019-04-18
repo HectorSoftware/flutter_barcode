@@ -75,7 +75,7 @@ class _CardAddState extends State<CardAdd> {
             );
           }else {
             return Center(
-             child: CircularProgressIndicator());
+             child: Icon(Icons.arrow_forward));
           }
         },
       ),
