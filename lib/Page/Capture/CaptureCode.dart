@@ -103,7 +103,6 @@ class CaptureState extends State<Capture> {
                                 result = "Presione para Escanear...";
                                 entro = false;
                               });
-
                             }
                           },
                         ),
@@ -131,6 +130,7 @@ class CaptureState extends State<Capture> {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              //Image.asset('assets/images/fuego.gif',height: 150),
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: FloatingActionButton.extended(
@@ -145,7 +145,7 @@ class CaptureState extends State<Capture> {
                   icon: Icon(Icons.save),
                   label: Text("Procesar"),
                   onPressed: (){
-                    if(!entro){ VentanaGuardar(); }
+                    if(entro){ VentanaGuardar(); }
                   },
                 ),
               ),

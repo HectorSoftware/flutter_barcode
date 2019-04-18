@@ -11,8 +11,8 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="flutter_barcode"
-        android:icon="@mipmap/ic_launcher">
+        android:label="ScanCode"
+        android:icon="@mipmap/logo_escanear">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
