@@ -6,17 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode/Page/Capture/CaptureCode.dart';
 import 'package:flutter_barcode/Page/Cards/Cards.dart';
 
-
 class HomePagescan extends StatefulWidget {
   @override
   HomePagescanState createState() {
     return new HomePagescanState();
   }
 }
-
-
-
-
 class HomePagescanState extends State<HomePagescan>  with SingleTickerProviderStateMixin{
 
   TabController _controller;
@@ -26,9 +21,6 @@ class HomePagescanState extends State<HomePagescan>  with SingleTickerProviderSt
     _controller = TabController(length: 2, vsync: this );
     super.initState();
   }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
