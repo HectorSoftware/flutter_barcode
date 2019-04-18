@@ -23,14 +23,11 @@ class Services{
    Future<Null> CloseTest() async{ await channel.shutdown();  }
 
    Future<List<BarCode>> TraerInvoice(String codigo) async{
-    print('=======================');
     List<BarCode> codigos = new List<BarCode>();
 
      var request = new ListInvoicesRequest();
-
       try{
         var response = await InvoicesStub.listInvoices(request);
-        print('=======================');
         print(response);
       }catch(e){
         print(e.toString());
