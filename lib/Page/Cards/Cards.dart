@@ -30,7 +30,6 @@ class _CardAddState extends State<CardAdd> {
 
   @override
   void initState() {
-    // TODO: implement initState
     PeticionGrpc();
     super.initState();
   }
@@ -44,8 +43,6 @@ class _CardAddState extends State<CardAdd> {
   obtener() async{
     List<BarCode> lista = await ClientDatabaseProvider.db.getAllCodes();
 
-    /*print(lista.length);
-    print('**********');*/
   }
   @override
   Widget build(BuildContext context) {
@@ -71,7 +68,7 @@ class _CardAddState extends State<CardAdd> {
                   },
                   //Now we paint the list with all the records, which will have a number, name, phone
                   child: ListTile(
-                    title: Text(item.Descripcion),
+                    title: Text(item.Descripcion + item.barcode),
                     subtitle: Text(item.barcode),
                     leading: CircleAvatar(child: Icon(Icons.check_circle)),
                     //If we press one of the cards, it takes us to the page to edit, with the data onTap:

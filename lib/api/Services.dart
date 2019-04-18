@@ -25,14 +25,16 @@ class Services{
 
   Future<List<InvoicesCode>> GetInvoiceAndSave(String codigo) async{
 
+
+
     List<InvoicesCode> codigos = new List<InvoicesCode>();
     var request = new ListInvoicesRequest()
     ..serviceNumber = codigo;
     try{
       var response = await InvoicesStub.listInvoices(request);
-
       int index = 0;
       for(var value in response.invoices){
+      //  print(value);
 
         List<String> list_dateFrom = new List<String>();
         list_dateFrom.add(value.dateFrom.year.toString());
