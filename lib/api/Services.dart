@@ -24,6 +24,7 @@ class Services{
    Future<Null> CloseTest() async{ await channel.shutdown();  }
 
   Future<List<InvoicesCode>> GetInvoiceAndSave(String codigo) async{
+
     List<InvoicesCode> codigos = new List<InvoicesCode>();
     var request = new ListInvoicesRequest()
     ..serviceNumber = codigo;
@@ -32,31 +33,30 @@ class Services{
 
       int index = 0;
       for(var value in response.invoices){
-        print(value);
 
         List<String> list_dateFrom = new List<String>();
-        list_dateFrom.add(value.dateFrom.year);
-        list_dateFrom.add(value.dateFrom.month);
-        list_dateFrom.add(value.dateFrom.day);
+        list_dateFrom.add(value.dateFrom.year.toString());
+        list_dateFrom.add(value.dateFrom.month.toString());
+        list_dateFrom.add(value.dateFrom.day.toString());
 
         List<String> list_dateTo = new List<String>();
-        list_dateTo.add(value.dateFrom.year);
-        list_dateTo.add(value.dateFrom.month);
-        list_dateTo.add(value.dateFrom.day);
+        list_dateTo.add(value.dateFrom.year.toString());
+        list_dateTo.add(value.dateFrom.month.toString());
+        list_dateTo.add(value.dateFrom.day.toString());
 
         List<String> list_expirationDate = new List<String>();
-        list_expirationDate.add(value.dateFrom.year);
-        list_expirationDate.add(value.dateFrom.month);
-        list_expirationDate.add(value.dateFrom.day);
+        list_expirationDate.add(value.dateFrom.year.toString());
+        list_expirationDate.add(value.dateFrom.month.toString());
+        list_expirationDate.add(value.dateFrom.day.toString());
 
         InvoicesCode varlocal = InvoicesCode(
             total: value.total,
             status: value.status,
             dateFrom: list_dateFrom,
             DateTo: list_dateTo,
-            Month: value.month,
+            Month: value.month.toString(),
             ExpirationDate: list_expirationDate,
-            Year: value.year
+            Year: value.year.toString()
         );
 
         index++;
