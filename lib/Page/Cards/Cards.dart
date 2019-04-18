@@ -39,7 +39,7 @@ class _CardAddState extends State<CardAdd> {
   void PeticionGrpc() async{
     Servicios.ConnectionTest('192.168.1.14',3000);
     obtener();
-    Servicios.GetInvoiceAndSave('','');
+    Servicios.GetInvoiceAndSave('');
     //Servicios.CloseTest();
   }
 

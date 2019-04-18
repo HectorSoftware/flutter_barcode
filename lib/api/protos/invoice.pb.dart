@@ -111,6 +111,7 @@ class Invoice extends $pb.GeneratedMessage {
 
 class ListInvoicesRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = new $pb.BuilderInfo('ListInvoicesRequest', package: const $pb.PackageName('cfe_clone.api'))
+    ..aOS(1, 'serviceNumber')
     ..hasRequiredFields = false
   ;
 
@@ -125,6 +126,11 @@ class ListInvoicesRequest extends $pb.GeneratedMessage {
   static $pb.PbList<ListInvoicesRequest> createRepeated() => new $pb.PbList<ListInvoicesRequest>();
   static ListInvoicesRequest getDefault() => _defaultInstance ??= create()..freeze();
   static ListInvoicesRequest _defaultInstance;
+
+  String get serviceNumber => $_getS(0, '');
+  set serviceNumber(String v) { $_setString(0, v); }
+  bool hasServiceNumber() => $_has(0);
+  void clearServiceNumber() => clearField(1);
 }
 
 class ListInvoicesResponse extends $pb.GeneratedMessage {
