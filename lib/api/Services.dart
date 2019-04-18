@@ -25,7 +25,8 @@ class Services{
 
   Future<List<InvoicesCode>> GetInvoiceAndSave(String codigo) async{
     List<InvoicesCode> codigos = new List<InvoicesCode>();
-    var request = new ListInvoicesRequest();
+    var request = new ListInvoicesRequest()
+    ..serviceNumber = codigo;
     try{
       var response = await InvoicesStub.listInvoices(request);
 
