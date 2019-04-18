@@ -68,7 +68,7 @@ class _CardAddState extends State<CardAdd> {
                   },
                   //Now we paint the list with all the records, which will have a number, name, phone
                   child: ListTile(
-                    title: Text(item.Descripcion + item.barcode),
+                    title: Text(item.Descripcion),
                     subtitle: Text(item.barcode),
                     leading: CircleAvatar(child: Icon(Icons.check_circle)),
                     //If we press one of the cards, it takes us to the page to edit, with the data onTap:
