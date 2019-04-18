@@ -149,7 +149,7 @@ class CaptureState extends State<Capture> {
                   icon: Icon(Icons.save),
                   label: Text("Procesar"),
                   onPressed: (){
-                    if(!entro){ VentanaGuardar(); }
+                    if(entro){ VentanaGuardar(); }
                   },
                 ),
               ),
