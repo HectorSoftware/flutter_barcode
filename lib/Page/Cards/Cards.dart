@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_barcode/Page/Cards/InvoicesDetails.dart';
 import 'package:flutter_barcode/Page/Sqlite/BarCodeClass.dart';
 import 'package:flutter_barcode/Page/Sqlite/database_helper.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +31,7 @@ class _CardAddState extends State<CardAdd> {
   @override
   void initState() {
     // TODO: implement initState
-
     PeticionGrpc();
-
     super.initState();
   }
 
@@ -42,13 +41,12 @@ class _CardAddState extends State<CardAdd> {
     Servicios.GetInvoiceAndSave('');
     //Servicios.CloseTest();
   }
-
   obtener() async{
     List<BarCode> lista = await ClientDatabaseProvider.db.getAllCodes();
+
     /*print(lista.length);
     print('**********');*/
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +77,7 @@ class _CardAddState extends State<CardAdd> {
                     //If we press one of the cards, it takes us to the page to edit, with the data onTap:
                     //This method is in the file add_editclient.dart
                     onTap: () {
+                      InvoiceDetails(codigo: item.barcode,Description: item.Descripcion,);
                       //ADD EVENTO AL PRESSIONAR CODIGO
                     },
                   ),
