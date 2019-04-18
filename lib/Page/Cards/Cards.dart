@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode/Page/Sqlite/BarCodeClass.dart';
 import 'package:flutter_barcode/Page/Sqlite/database_helper.dart';
 import 'package:flutter_barcode/main.dart';
+import 'package:flutter_barcode/api/Services.dart';
 
 class CardAdd extends StatefulWidget {
   @override
@@ -15,6 +16,9 @@ class CardAdd extends StatefulWidget {
 
 
 class _CardAddState extends State<CardAdd> {
+
+  Services Servicios = new Services();
+
   @override
   void didUpdateWidget(CardAdd oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -23,18 +27,26 @@ class _CardAddState extends State<CardAdd> {
     });
   }
 
-
   @override
   void initState() {
     // TODO: implement initState
+
+    PeticionGrpc();
+
     super.initState();
+  }
+
+  void PeticionGrpc() async{
+    Servicios.ConnectionTest('192.168.1.14',3000);
     obtener();
+    Servicios.GetInvoiceAndSave('','');
+    //Servicios.CloseTest();
   }
 
   obtener() async{
     List<BarCode> lista = await ClientDatabaseProvider.db.getAllCodes();
-    print(lista.length);
-    print('**********');
+    /*print(lista.length);
+    print('**********');*/
   }
 
   @override
