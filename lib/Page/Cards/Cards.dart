@@ -77,7 +77,7 @@ class _CardAddState extends State<CardAdd> {
                     //If we press one of the cards, it takes us to the page to edit, with the data onTap:
                     //This method is in the file add_editclient.dart
                     onTap: () {
-                      InvoiceDetails(codigo: item.barcode,Description: item.Descripcion,);
+                      InvoiceDetails(codigo: item.barcode,Description: item.Descripcion, );
                       //ADD EVENTO AL PRESSIONAR CODIGO
                     },
                   ),
