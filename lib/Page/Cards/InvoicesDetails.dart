@@ -27,7 +27,6 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
     Services Servicios = Services();
     List<InvoicesCode> listInvoice = List<InvoicesCode>();
 
-
   @override
   void initState() {
     initvalues();
@@ -37,17 +36,14 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
   void initvalues() async {
 
     print(widget.codigo);
-    Servicios.ConnectionTest('192.168.1.14',3000);
+    Servicios.ConnectionTest('3.17.109.60',3000);
     listInvoice = await Servicios.GetInvoiceAndSave(widget.codigo);
-    print(listInvoice.length);
     imprimir();
   }
-
     imprimir(){
       setState(() {
         listInvoice;
       });
-
   }
 
   @override
@@ -63,7 +59,6 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
           return Column(
             children: <Widget>[
           ListTile(
-
           title: Text('Estado:  ' + listInvoice[index].status+ '\nMes: ' +  listInvoice[index].Month + '\nAño: ' + listInvoice[index].Year),
           subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[0] + ' Hasta: ' + listInvoice[index].ExpirationDate[0] + ' Total : ' + listInvoice[index].total.toString()),
           leading: CircleAvatar(child: Icon(Icons.details)),

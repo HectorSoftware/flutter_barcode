@@ -19,6 +19,7 @@ class CardAdd extends StatefulWidget {
 class _CardAddState extends State<CardAdd> {
 
   Services Servicios = new Services();
+  String Codigo = '';
 
   @override
   void didUpdateWidget(CardAdd oldWidget) {
@@ -54,32 +55,35 @@ class _CardAddState extends State<CardAdd> {
           if (snapshot.hasData) {
             return ListView.builder(
               physics: BouncingScrollPhysics(),
-              //Count all records
               itemCount: snapshot.data.length,
-              //all the records that are in the client table are passed to an item Client item = snapshot.data [index];
               itemBuilder: (BuildContext context, int index){
                 BarCode item = snapshot.data[index];
-                //delete one register for id
                 return Dismissible(
                   key: UniqueKey(),
                   background: Container(color: PrimaryColor),
                   onDismissed: (diretion) {
                     ClientDatabaseProvider.db.deleteCodeWithId(item.barcode);
                   },
-                  //Now we paint the list with all the records, which will have a number, name, phone
                   child: ListTile(
                     title: Text(item.Descripcion),
                     subtitle: Text(item.barcode),
                     leading: CircleAvatar(child: Icon(Icons.check_circle)),
-                    //If we press one of the cards, it takes us to the page to edit, with the data onTap:
-                    //This method is in the file add_editclient.dart
+
                     onTap: () {
+                    /*  if(item.barcode.length == 12)
+                        {
+                          Codigo = item.barcode;
+                        }*/
+                      if(item.barcode.length ==  30 ){
+                        Codigo = item.barcode.substring(2,14);
+                      }else{
+                        print("ERROR");// HACER VENTANA EMERGENTE
+                      }
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => InvoiceDetails(codigo: item.barcode,Description: item.Descripcion),
+                        builder: (BuildContext context) => InvoiceDetails(codigo: Codigo,Description: item.Descripcion),
                         //builder: (BuildContext context) => InvoiceDetails(codigo: '001020400192',Description: item.Descripcion),
                       ),
                       );
-                      //ADD EVENTO AL PRESSIONAR CODIGO
                     },
                   ),
                 );
