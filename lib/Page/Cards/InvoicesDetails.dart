@@ -27,7 +27,6 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
     Services Servicios = Services();
     List<InvoicesCode> listInvoice = List<InvoicesCode>();
 
-
   @override
   void initState() {
     initvalues();
@@ -41,12 +40,10 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
     listInvoice = await Servicios.GetInvoiceAndSave(widget.codigo);
     imprimir();
   }
-
     imprimir(){
       setState(() {
         listInvoice;
       });
-
   }
 
   @override

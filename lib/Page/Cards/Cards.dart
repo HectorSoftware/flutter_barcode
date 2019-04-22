@@ -70,17 +70,14 @@ class _CardAddState extends State<CardAdd> {
                     leading: CircleAvatar(child: Icon(Icons.check_circle)),
 
                     onTap: () {
-                      if(item.barcode.length == 12)
+                    /*  if(item.barcode.length == 12)
                         {
-                          Codigo = item.barcode;// HACER VENTANA EMERGENTE
-                        }
+                          Codigo = item.barcode;
+                        }*/
                       if(item.barcode.length ==  30 ){
                         Codigo = item.barcode.substring(2,14);
-                        print(Codigo);
-                        print('--------CARDS');
-
                       }else{
-                        print("ERROR");
+                        print("ERROR");// HACER VENTANA EMERGENTE
                       }
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => InvoiceDetails(codigo: Codigo,Description: item.Descripcion),
