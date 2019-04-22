@@ -86,7 +86,7 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
           } ,
         ) :
         Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(PrimaryColor)),
         ),
       )
     );
