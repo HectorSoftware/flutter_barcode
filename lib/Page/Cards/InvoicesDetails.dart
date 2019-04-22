@@ -26,6 +26,8 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
 
     Services Servicios = Services();
     List<InvoicesCode> listInvoice = List<InvoicesCode>();
+    bool Estatus = false;
+    int contador = 0;
 
   @override
   void initState() {
@@ -34,15 +36,27 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
   }
 
   void initvalues() async {
-
-    print(widget.codigo);
     Servicios.ConnectionTest('3.17.109.60',3000);
-    listInvoice = await Servicios.GetInvoiceAndSave(widget.codigo);
-    imprimir();
+    Estatus = false;
+    while (!Estatus) {
+      listInvoice = await Servicios.GetInvoiceAndSave(widget.codigo);
+      imprimir();
+      if(contador == 200){
+        Estatus = true;
+      }else{
+        print('Aumentando $contador');
+        contador++;
+      }
+    }
   }
-    imprimir(){
+
+  imprimir(){
       setState(() {
         listInvoice;
+        print(listInvoice.length);
+        if(listInvoice.length > 0){
+          Estatus = true;
+        }
       });
   }
 
@@ -53,23 +67,28 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
       appBar: AppBar(
         title: Text('Detalles'),
       ),
-      body: ListView.builder(
-        itemCount: listInvoice.length,
-        itemBuilder:(BuildContext context, int index){
-          return Column(
-            children: <Widget>[
-          ListTile(
-          title: Text('Estado:  ' + listInvoice[index].status+ '\nMes: ' +  listInvoice[index].Month + '\nAño: ' + listInvoice[index].Year),
-          subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[3]+ ' ' + listInvoice[index].dateFrom[2] + ' Hasta: ' + listInvoice[index].ExpirationDate[3]+ ' '  + listInvoice[index].ExpirationDate[2] + ' Total : ' + listInvoice[index].total.toString()),
-          leading: CircleAvatar(child: Icon(Icons.details)),
-          ),
-            Divider(
-              height: 25,
-            )
-          ],
-          );
-        } ,
-      ),
+      body: Container(
+        child: Estatus ?  ListView.builder(
+          itemCount: listInvoice.length,
+          itemBuilder:(BuildContext context, int index){
+            return Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text('Estado:  ' + listInvoice[index].status+ '\nMes: ' +  listInvoice[index].Month + '\nAño: ' + listInvoice[index].Year),
+                  subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[0] + ' Hasta: ' + listInvoice[index].ExpirationDate[0] + ' Total : ' + listInvoice[index].total.toString()),
+                  leading: CircleAvatar(child: Icon(Icons.details)),
+                ),
+                Divider(
+                  height: 25,
+                )
+              ],
+            );
+          } ,
+        ) :
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+      )
     );
   }
 }
