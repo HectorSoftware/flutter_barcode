@@ -60,7 +60,7 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
             children: <Widget>[
           ListTile(
           title: Text('Estado:  ' + listInvoice[index].status+ '\nMes: ' +  listInvoice[index].Month + '\nAño: ' + listInvoice[index].Year),
-          subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[0] + ' Hasta: ' + listInvoice[index].ExpirationDate[0] + ' Total : ' + listInvoice[index].total.toString()),
+          subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[3]+ ' ' + listInvoice[index].dateFrom[2] + ' Hasta: ' + listInvoice[index].ExpirationDate[3]+ ' '  + listInvoice[index].ExpirationDate[2] + ' Total : ' + listInvoice[index].total.toString()),
           leading: CircleAvatar(child: Icon(Icons.details)),
           ),
             Divider(
