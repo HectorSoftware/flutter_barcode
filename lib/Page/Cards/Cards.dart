@@ -91,7 +91,9 @@ class _CardAddState extends State<CardAdd> {
             );
           }else {
             return Center(
-             child: Icon(Icons.arrow_forward));
+             child:CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.black)),
+
+            );
           }
         },
       ),

@@ -25,6 +25,7 @@ class CaptureState extends State<Capture> {
       String qrResult = await BarcodeScanner.scan();
       setState(() {
         result = qrResult;
+        result = result.substring(2,14);
         entro = true;
       });
     } on PlatformException catch (ex) {
