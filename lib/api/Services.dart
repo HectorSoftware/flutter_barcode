@@ -49,9 +49,9 @@ class Services{
         list_dateTo.add(value.dateFrom.day.toString());
 
         List<String> list_expirationDate = new List<String>();
-        list_expirationDate.add(value.dateFrom.year.toString());
-        list_expirationDate.add(value.dateFrom.month.toString());
-        list_expirationDate.add(value.dateFrom.day.toString());
+        list_expirationDate.add(value.dateTo.year.toString());
+        list_expirationDate.add(value.dateTo.month.toString());
+        list_expirationDate.add(value.dateTo.day.toString());
 
         InvoicesCode varlocal = InvoicesCode(
             total: value.total,

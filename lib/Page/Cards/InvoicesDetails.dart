@@ -41,7 +41,7 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
     while (!Estatus) {
       listInvoice = await Servicios.GetInvoiceAndSave(widget.codigo);
       imprimir();
-      if(contador == 200){
+      if(contador == 30){
         Estatus = true;
       }else{
         print('Aumentando $contador');
@@ -62,7 +62,6 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
 
   @override
   Widget build(BuildContext context) {
-
     return new Scaffold(
       appBar: AppBar(
         title: Text('Detalles'),
@@ -70,12 +69,13 @@ class _InvoiceDetailsState extends State<InvoiceDetails> {
       body: Container(
         child: Estatus ?  ListView.builder(
           itemCount: listInvoice.length,
-          itemBuilder:(BuildContext context, int index){
+          itemBuilder:(BuildContext context, int index){String mes   = listInvoice[index].Month.replaceRange(0, 6, '');
             return Column(
+
               children: <Widget>[
                 ListTile(
-                  title: Text('Estado:  ' + listInvoice[index].status+ '\nMes: ' +  listInvoice[index].Month + '\nAño: ' + listInvoice[index].Year),
-                  subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[0] + ' Hasta: ' + listInvoice[index].ExpirationDate[0] + ' Total : ' + listInvoice[index].total.toString()),
+                  title: Text('Estado:  ' + listInvoice[index].status+ '\nMes: ' + mes + '\nAño: ' + listInvoice[index].Year),
+                  subtitle: Text('Desde:   ' + listInvoice[index].dateFrom[0] + '/' + listInvoice[index].dateFrom[1] + '/' + listInvoice[index].dateFrom[2] + ' Hasta: ' + listInvoice[index].ExpirationDate[0]  + '/' + listInvoice[index].ExpirationDate[1] + '/' + listInvoice[index].ExpirationDate[2]+ ' Total : ' + listInvoice[index].total.toString()),
                   leading: CircleAvatar(child: Icon(Icons.details)),
                 ),
                 Divider(
