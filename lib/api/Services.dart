@@ -31,7 +31,6 @@ class Services{
     var request = new ListInvoicesRequest()
     ..serviceNumber = codigo;
     try{
-
       var response = await InvoicesStub.listInvoices(request);
       int index = 0;
 
